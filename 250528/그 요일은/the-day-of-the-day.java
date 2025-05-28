@@ -45,7 +45,7 @@ public class Main {
         }
         second += d2;
         
-        int diffrences = second - first + 2;
+        int diffrences = second - first;
         if(diffrences - day >= 0){
             diffrences -= day;
             int result = diffrences / 7 + 1;
