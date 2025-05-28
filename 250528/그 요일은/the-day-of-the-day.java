@@ -47,7 +47,8 @@ public class Main {
         
         int diffrences = second - first + 2;
         if(diffrences - day >= 0){
-            int result = diffrences / 7;
+            diffrences -= day;
+            int result = diffrences / 7 + 1;
 
             System.out.println(result);
         }else{
