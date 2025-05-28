@@ -1,6 +1,36 @@
 import java.util.Scanner;
 
 public class Main {
+
+    public static int numOfDays(int month){
+        int[] days = new int[]{0,31,29,31,30,31,30,31,31,30,31,30,31};
+        int result = 0;
+        for(int i=1; i<month; i++){
+            result += days[i];
+        }
+        return result;
+    }
+
+    public static int numOfDay(String day){
+        if(day.equals("Mon")){
+            return 0;
+        }else if(day.equals("Tue")){
+            return 1;
+        }else if(day.equals("Wed")){
+            return 2;
+        }else if(day.equals("Thu")){
+            return 3;
+        }else if(day.equals("Fri")){
+            return 4;
+        }else if(day.equals("Sat")){
+            return 5;
+        }else if(day.equals("Sun")){
+            return 6;
+        }else{
+            return 0;
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int m1 = sc.nextInt();
@@ -8,52 +38,18 @@ public class Main {
         int m2 = sc.nextInt();
         int d2 = sc.nextInt();
         String A = sc.next();
-        // Please write your code here;
-        
+        // Please write your code here.
 
-        int day = 0;
-
-        if(A.equals("Mon")){
-            day = 0;
-        }else if(A.equals("Tue")){
-            day = 1;
-        }else if(A.equals("Wed")){
-            day = 2;
-        }else if(A.equals("Thu")){
-            day = 3;
-        }else if(A.equals("Fri")){
-            day = 4;
-        }else if(A.equals("Sat")){
-            day = 5;
-        }else if(A.equals("Sun")){
-            day = 6;
+        int firstDays = numOfDays(m1) + d1;
+        int secondDays = numOfDays(m2) + d2;
+        int currentDay = numOfDay("Mon");
+        int result = 0;
+        for(int i=firstDays; i<=secondDays; i++){
+            if(currentDay == numOfDay(A)){
+                result++;
+            }
+            currentDay = (currentDay + 1) % 7;
         }
-
-        int[] numOfDays = new int[]{0,31,29,31,30,31,30,31,31,30,31,30,31};
-
-        int first = 0;
-
-        for(int i=1; i< m1; i++){
-            first += numOfDays[i];
-        }
-        first += d1;
-
-        int second = 0;
-
-        for(int i=1; i< m2; i++){
-            second += numOfDays[i];
-        }
-        second += d2;
-        
-        int diffrences = second - first;
-        if(diffrences - day >= 0){
-            diffrences -= day;
-            int result = diffrences / 7 + 1;
-
-            System.out.println(result);
-        }else{
-            System.out.println(0);
-        }
-        
+        System.out.println(result);
     }
 }
